@@ -40,7 +40,7 @@ $(document).ready(function(){
 		var login_p=$('#login_p').val();
 		$.ajax({
 					type: 'POST',
-					url: 'http://148.0.16.126:5123/reservaciones/consultas.php',
+					url: 'http://148.0.33.109:5123/reservaciones/consultas.php',
 					data: 'tipo=login&email='+login_e+"&paswd="+login_p,
 					success: 
 					function guepa(result){
@@ -67,7 +67,7 @@ $(document).ready(function(){
 	if(x==1){
 		$.ajax({
 					type: 'POST',
-					url: 'http://148.0.16.126:5123/reservaciones/updates.php',
+					url: 'http://148.0.33.109:5123/reservaciones/updates.php',
 					data: $('#form_resgistre').serialize()+'&tipo=registro',
 					success: 
 					function guepa(result){
@@ -99,7 +99,7 @@ $(document).ready(function(){
 	function cargar(lcarga,id){
 			$.ajax({
 					type: 'POST',
-					url: 'http://148.0.16.126:5123/reservaciones/consultas.php',
+					url: 'http://148.0.33.109:5123/reservaciones/consultas.php',
 					data: 'tipo='+lcarga+'&id='+id,
 					success: 
 					function guepa(result){
@@ -115,7 +115,7 @@ $(document).on('click',".reserva",function (){
 		data=$(this).attr("info");
 			$.ajax({
 					type: 'POST',
-					url: 'http://148.0.16.126:5123/reservaciones/updates.php',
+					url: 'http://148.0.33.109:5123/reservaciones/updates.php',
 					data: 'tipo=reserva&info='+data,
 					success: 
 					function guepa(result){
