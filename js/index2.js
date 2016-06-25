@@ -40,7 +40,7 @@ $(document).ready(function(){
 		var login_p=$('#login_p').val();
 		$.ajax({
 					type: 'POST',
-					url: 'http://148.0.33.109:5123/reservaciones/consultas.php',
+					url: 'http://10.0.0.20:5123/reservaciones/consultas.php',
 					data: 'tipo=login&email='+login_e+"&paswd="+login_p,
 					success: 
 					function guepa(result){
@@ -51,6 +51,8 @@ $(document).ready(function(){
 							$("#nombre_user").append(info[1]);
 							cambio(direcion);
 							cargar("events",info[0]);
+							cargar("reserva",info[0]);
+							$("#reload").attr("info",info[0])
 						}
 					}
 		});
@@ -58,6 +60,8 @@ $(document).ready(function(){
 			$('#login_e').addClass("invalid");
 		}
 	});
+	//Reload
+	$(document).on("click","#reload",function(){ cargar("events",$(this).attr("info"));cargar("reserva",$(this).attr("info"));});
 	//registro
 	$(document).on('click',"#registro_p",function (){
 	var x=1;
@@ -67,7 +71,7 @@ $(document).ready(function(){
 	if(x==1){
 		$.ajax({
 					type: 'POST',
-					url: 'http://148.0.33.109:5123/reservaciones/updates.php',
+					url: 'http://10.0.0.20:5123/reservaciones/updates.php',
 					data: $('#form_resgistre').serialize()+'&tipo=registro',
 					success: 
 					function guepa(result){
@@ -99,7 +103,7 @@ $(document).ready(function(){
 	function cargar(lcarga,id){
 			$.ajax({
 					type: 'POST',
-					url: 'http://148.0.33.109:5123/reservaciones/consultas.php',
+					url: 'http://10.0.0.20:5123/reservaciones/consultas.php',
 					data: 'tipo='+lcarga+'&id='+id,
 					success: 
 					function guepa(result){
@@ -115,11 +119,11 @@ $(document).on('click',".reserva",function (){
 		data=$(this).attr("info");
 			$.ajax({
 					type: 'POST',
-					url: 'http://148.0.33.109:5123/reservaciones/updates.php',
+					url: 'http://10.0.0.20:5123/reservaciones/updates.php',
 					data: 'tipo=reserva&info='+data,
 					success: 
 					function guepa(result){
-							if(result){
+							if(parseInt(result)){
 							cargar("reserva",result);
 							$('.collapsible').collapsible({accordion : false});
 							}
