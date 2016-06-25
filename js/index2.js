@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 	$("form").submit(function(e){
         e.preventDefault();
@@ -28,7 +29,6 @@ $(document).ready(function(){
 		var lcarga2=$(this).attr("type");
 		$($(this).attr("str")).removeClass('hide').siblings().addClass('hide');
 		$("#slide-out").sideNav('hide');
-		cargar(lcarga2,1);
 		//$(".drag-target").removeClass('hide');
 	});
 	
@@ -119,10 +119,10 @@ $(document).on('click',".reserva",function (){
 					data: 'tipo=reserva&info='+data,
 					success: 
 					function guepa(result){
-							cargar("reserva",1);
-							$('.collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-    });
+							if(result){
+							cargar("reserva",result);
+							$('.collapsible').collapsible({accordion : false});
+							}
 					}
 				});
 	
