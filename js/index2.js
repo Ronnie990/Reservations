@@ -119,7 +119,6 @@ $(document).on('click',".reserva",function (){
 					data: 'tipo=reserva&info='+info,
 					success: 
 					function guepa(result){
-						alert(result);
 							if(parseInt(result)){
 							cargar("reserva",result);
 							$('.collapsible').collapsible({accordion : false});
