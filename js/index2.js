@@ -7,8 +7,6 @@ $(document).ready(function(){
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
 	 $('select').material_select();
-	 
-	
   });
   window.onload = function() {
  
@@ -61,7 +59,7 @@ $(document).ready(function(){
 		}
 	});
 	//Reload
-	$(document).on("click","#reload",function(){ cargar("events",$(this).attr("info"));cargar("reserva",$(this).attr("info"));});
+	$(document).on("click",".reload",function(){ cargar("events",$(this).attr("info"));cargar("reserva",$(this).attr("info"));});
 	//registro
 	$(document).on('click',"#registro_p",function (){
 	var x=1;
@@ -88,17 +86,16 @@ $(document).ready(function(){
 	});
 	
 	
-	$(document).on("click",".cambio",function(){
+$(document).on("click",".cambio",function(){
 		cambio($(this).attr("href"));
-	});
+});
 	function cambio(direcion){
-	$(".page").addClass('hide');
-	$(direcion).removeClass('hide');
-	if(direcion=="#page_content"){
-	$(".drag-target").removeClass('hide');	
-	}
+		$(".page").addClass('hide');
+		$(direcion).removeClass('hide');
+		if(direcion=="#page_content"){
+			$(".drag-target").removeClass('hide');	
+		}
 	};
-
 //cargar contenido
 	function cargar(lcarga,id){
 			$.ajax({
@@ -114,15 +111,15 @@ $(document).ready(function(){
 					}
 				});}
 //reserva
-
 $(document).on('click',".reserva",function (){
-		data=$(this).attr("info");
+		var info=$(this).attr("info");
 			$.ajax({
 					type: 'POST',
 					url: 'http://reservationappgo.hopto.org:5123/reservaciones/updates.php',
-					data: 'tipo=reserva&info='+data,
+					data: 'tipo=reserva&info='+info,
 					success: 
 					function guepa(result){
+						alert(result);
 							if(parseInt(result)){
 							cargar("reserva",result);
 							$('.collapsible').collapsible({accordion : false});
@@ -136,5 +133,23 @@ $(document).on('click',".reserva",function (){
 $(document).on('click',".confirm",function (){
 		var close=$(this).attr("str");
 		$(close).trigger("click");
-
+});
+$(document).on("click",".cancelar",function(){
+	var data=$(this).attr("cancel");
+	$.ajax({
+					type: 'POST',
+					url: 'http://reservationappgo.hopto.org:5123/reservaciones/updates.php',
+					data: 'tipo=cancelar&info='+data,
+					success: 
+					function guepa(result){
+							if(parseInt(result)){
+							cargar("reserva",result);
+							$('.collapsible').collapsible({accordion : false});
+							}
+					}
+				});
+	
+});
+$(document).on("change",".type", function(){
+	$($(this).attr("target")).removeClass("hide");
 });
