@@ -112,15 +112,17 @@ $(document).on("click",".cambio",function(){
 				});}
 //reserva
 $(document).on('click',".reserva",function (){
-		var info=$(this).attr("info");
+		var info=$($(this).attr("target")).val()+","+$($(this).attr("target")).attr("info");
 			$.ajax({
 					type: 'POST',
 					url: 'http://reservationappgo.hopto.org:5123/reservaciones/updates.php',
 					data: 'tipo=reserva&info='+info,
+					dataType: 'json',
 					success: 
 					function guepa(result){
-							if(parseInt(result)){
-							cargar("reserva",result);
+							if(parseInt(result['user'])){
+							$("#modal_content_reserva").html(result['mensaje']);
+							cargar("reserva",result['user']);
 							$('.collapsible').collapsible({accordion : false});
 							}
 					}
