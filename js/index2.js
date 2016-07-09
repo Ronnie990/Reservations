@@ -112,7 +112,7 @@ $(document).on("click",".cambio",function(){
 				});}
 //reserva
 $(document).on('click',".reserva",function (){
-		$("#modal_content_reserva").html('<div class="preloader-wrapper  big active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		$("#modal_content_reserva").html('<div class="center"><div class="preloader-wrapper  big active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>');
 		var info=$($(this).attr("target")).val()+","+$($(this).attr("target")).attr("info");
 			$.ajax({
 					type: 'POST',
