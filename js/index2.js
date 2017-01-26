@@ -38,7 +38,7 @@ $(document).ready(function(){
 		var login_p=$('#login_p').val();
 		$.ajax({
 					type: 'POST',
-					url: 'http://reservationappgo.hopto.org:5123/reservaciones/consultas.php',
+					url: 'http://ronnie990.ddns.net:5123/reservaciones/consultas.php',
 					data: 'tipo=login&email='+login_e+"&paswd="+login_p,
 					success: 
 					function guepa(result){
@@ -69,7 +69,7 @@ $(document).ready(function(){
 	if(x==1){
 		$.ajax({
 					type: 'POST',
-					url: 'http://reservationappgo.hopto.org:5123/reservaciones/updates.php',
+					url: 'http://ronnie990.ddns.net:5123/reservaciones/updates.php',
 					data: $('#form_resgistre').serialize()+'&tipo=registro',
 					success: 
 					function guepa(result){
@@ -100,7 +100,7 @@ $(document).on("click",".cambio",function(){
 	function cargar(lcarga,id){
 			$.ajax({
 					type: 'POST',
-					url: 'http://reservationappgo.hopto.org:5123/reservaciones/consultas.php',
+					url: 'http://ronnie990.ddns.net:5123/reservaciones/consultas.php',
 					data: 'tipo='+lcarga+'&id='+id,
 					success: 
 					function guepa(result){
@@ -116,7 +116,7 @@ $(document).on('click',".reserva",function (){
 		var info=$($(this).attr("target")).val()+","+$($(this).attr("target")).attr("info");
 			$.ajax({
 					type: 'POST',
-					url: 'http://reservationappgo.hopto.org:5123/reservaciones/updates.php',
+					url: 'http://ronnie990.ddns.net:5123/reservaciones/updates.php',
 					data: 'tipo=reserva&info='+info,
 					dataType: 'json',
 					success: 
@@ -140,7 +140,7 @@ $(document).on("click",".cancelar",function(){
 	var data=$(this).attr("cancel");
 	$.ajax({
 					type: 'POST',
-					url: 'http://reservationappgo.hopto.org:5123/reservaciones/updates.php',
+					url: 'http://ronnie990.ddns.net:5123/reservaciones/updates.php',
 					data: 'tipo=cancelar&info='+data,
 					success: 
 					function guepa(result){
